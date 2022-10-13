@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 5d8df3cb9d4505a4b976f5df0eeee079
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Palanquin Dark
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f44f69d7cd159904cacbeda63fddff82, type: 3}
+  - {fileID: 12800000, guid: 13e0565aac8d8a8488330ce265c6d4fd, type: 3}
+  - {fileID: 12800000, guid: 9ad3e4e0b3c79e348ad89ad4327f2613, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
