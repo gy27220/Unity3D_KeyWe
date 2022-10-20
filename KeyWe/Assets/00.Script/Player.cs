@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimator : MonoBehaviour
+public class Player : MonoBehaviour
 {
 	#region public º¯¼ö
+	public GameObject startPoint;
 	public Transform root;
 	public float jumpSpeed;
 	public float runSpeed = 5.0f;
@@ -31,17 +32,21 @@ public class PlayerAnimator : MonoBehaviour
 
 	private void Update()
 	{
-		if (controller.isGrounded)
-			Jump();
-
+		if (playerTransform.position.y < -5f)
+			playerTransform.position = startPoint.transform.position;
 		else
-			move.y -= gravity * Time.deltaTime;
+		{
+			if (controller.isGrounded)
+				Jump();
 
-		Move();
-		controller.Move(move * Time.deltaTime);
+			else
+				move.y -= gravity * Time.deltaTime;
 
-		ButtonPush();
-		Chirp();
+			Move();
+			controller.Move(move * Time.deltaTime);
+			ButtonPush();
+			Chirp();
+		}
 	}
 
 	void Move()
@@ -51,21 +56,16 @@ public class PlayerAnimator : MonoBehaviour
 		move.y = 0;
 
 		Vector3 inputMoveXZ = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
 		inputMoveXZ = playerTransform.TransformDirection(inputMoveXZ);
-
 		inputMoveXZ = inputMoveXZ.normalized * runSpeed;
 
 		if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
 		{
 			Vector3 forward = Vector3.Slerp(root.forward, inputMoveXZ, Time.deltaTime);
-
 			root.LookAt(root.position + inputMoveXZ);
-
 			move = Vector3.MoveTowards(move, inputMoveXZ, runSpeed);
 		}
-
-		else
+		else 
 			move = Vector3.MoveTowards(move, Vector3.zero, runSpeed);
 
 		float speed = move.sqrMagnitude;
